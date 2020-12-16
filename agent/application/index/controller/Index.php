@@ -2,6 +2,7 @@
 namespace app\index\controller;
 use think\Controller;
 use think\Db;
+use app\index\model\MemberModel;
 use app\admin\model\UserInfModel;
 use org\Crypt;
 class Index extends Controller
@@ -88,6 +89,10 @@ class Index extends Controller
         return $this->fetch();
     }
 
+    public function forget_password() {
+
+        return $this->fetch();
+    }
     public function my() {
         return $this->fetch();
     }
@@ -136,7 +141,7 @@ class Index extends Controller
         return $this->fetch();
     }
     /**
-    */
+     */
     private function getAush ($gid) {
         $uid = session('uid');
         $u_mode = new UserInfModel();
@@ -192,9 +197,9 @@ class Index extends Controller
         $uid = session('uid');
         $userinfo = Db::name('member')->where('id',$uid)->find();
         return  $this->jsonData(["code"=>1,
-                                'nickname'=>$userinfo['nickname'],
-                                'PayBindid'=>$userinfo['PayBindid'],
-                                'group_id' =>$userinfo['group_id']
+            'nickname'=>$userinfo['nickname'],
+            'PayBindid'=>$userinfo['PayBindid'],
+            'group_id' =>$userinfo['group_id']
         ]);
     }
 
@@ -244,14 +249,16 @@ class Index extends Controller
             $muser->password = md5(md5($param['newpassword']) . config('auth_key'));
             $res = $muser->save();
             if($res){
-                $this->success("修改成功",'index/index');
+                $r_data['code'] =1;
+                $r_data['msg'] = "修改成功";
+                return json($r_data);
             }
         }
     }
 
     /**
      * 获取下级业务员
-    */
+     */
     public function get_agent() {
         $uid = session('uid');
         $leven = get_level($uid);
@@ -271,7 +278,7 @@ class Index extends Controller
      */
     public function get_qz_list() {
         $uid = session('uid');
-            //获取群主
+        //获取群主
         if(input('post.')) {
             $PayBindid = input('post.PayBindid');
             $user_model = new UserInfModel();
