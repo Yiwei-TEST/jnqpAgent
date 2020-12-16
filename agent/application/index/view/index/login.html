@@ -122,8 +122,6 @@
 
 <script>
     function checkuserform () {
-        let img = "{:url('Login/checkVerify')}?tm="+Math.random();
-        $('#img').attr('src',img);
         var account = $("input[name='account']").val();
         var pwd     = $("input[name='pwd']").val();
         var code    = $("input[name='certificate']").val();
@@ -135,6 +133,7 @@
                     window.sessionStorage.setItem('uid',res.uid);
                     location.href=res.url;
                 }else{
+                    $('#img').attr('src',"{:url('Login/checkVerify')}");
                     alert(res.msg);
                 }
             })
