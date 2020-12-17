@@ -112,6 +112,15 @@ class Index
             $userId =  $data_info['userId'];
             $payBindId = $data_info['payBindId'];
             $date      = date('Y-m-d H:i:s');
+            $sql = " SELECT * FROM user_inf WHERE userId='$userId'";
+            $bind_info = Db::connect($db2)->query($sql);
+            if(empty($bind_info)) {
+                $r_data['code']= -4;
+                $r_data['message']= "用户不存在";
+                $r_datas = json_encode($r_data);
+                $r_datass = encrypt_info($r_datas);
+                return urlencode($r_datass);
+            }
             $sql = "UPDATE user_inf SET `payBindId`='$payBindId', payBindTime='$date' WHERE `userId`='$userId'";
             $bind_info = Db::connect($db2)->query($sql);
              if($bind_info!==false) {
