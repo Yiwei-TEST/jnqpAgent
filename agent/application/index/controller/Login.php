@@ -66,10 +66,21 @@ class Login extends Controller
     }
 
     public function registerpost() {
+        $param = input('post.');
         $s_nid = session('uid');
         $PayBindid = trandom_number_sr(6);
         if(empty($s_nid)){
             $this->error('包负责人为空');
+        }
+        if(empty($param['nickname'])) {
+            $this->error('昵称不能为空');
+        }
+        if(empty($param['password'])) {
+            $this->error('密码不能为空');
+        }
+        $leng = strlen($param['password']);
+        if($leng<6){
+            $this->error('密码不能少于6位');
         }
         $g = Db::name('member')->where('id',$s_nid)->find();
         $gs = Db::name('member')->where('PayBindid',$PayBindid)->find();
@@ -83,7 +94,6 @@ class Login extends Controller
         if($g['group_id'] !==2){
             $this->error('身份错误');
         }
-        $param = input('post.');
         $param['s_nid'] = $s_nid;
         $param['PayBindid'] = $PayBindid;
         $group = new MemberModel();

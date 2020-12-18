@@ -30,7 +30,7 @@ return [
     'sql_explain' => false,     // 是否需要进行SQL性能分析
     'extra_config_list' => ['database', 'route', 'validate'],//各模块公用配置
     'app_debug' => true,
-	'default_module' => 'admin',//默认模块
+	'default_module' => 'index',//默认模块
     //'default_filter' => ['strip_tags', 'htmlspecialchars'],
 
     //默认错误跳转对应的模板文件

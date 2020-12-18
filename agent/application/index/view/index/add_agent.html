@@ -72,6 +72,19 @@
         var password     = $("input[name='password']").val();
         var nickname     = $("input[name='nickname']").val();
         var password1     = $("input[name='password1']").val();
+        if(!password) {
+            alert('密码不能为空');
+            return;
+        }
+        if(!nickname) {
+            alert('昵称不能为空');
+            return;
+        }
+        if(!password1) {
+            alert('确认密码不能为空');
+            return;
+        }
+        console.log(22);
         $.post('/index/login/registerpost',{account:account,password:password,password1:password1,nickname:nickname},
             function(res){
                 if(res.code==1){
