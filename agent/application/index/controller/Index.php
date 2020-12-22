@@ -140,6 +140,42 @@ class Index extends Controller
         $this->assign("groupId",$groupId);
         return $this->fetch();
     }
+
+    /**
+     *汇总包负责人统计数据
+    */
+    public function sum_statistics() {
+        $uid = session('uid');
+        $leven = get_level($uid);
+        if($leven!=2) {  //包负责人权限
+            return json(['code'=>-1,'message'=>'权限不足']);
+        }
+        $time1 = get_w_start();
+        $etime1= get_w_end();
+        $time2 = get_w_start2();
+        $etime2= get_w_end2();
+        $time3 = thismonth_start_time();
+        $etime3= thismonth_end_time();
+        $time4 = lastmonth_start_time();
+        $etime4= lastmonth_end_time();
+        $wheres = $this->get_qyq_all($uid);
+        $where = "tdate >= '$time1' and tdate<= '$etime1'";  //本周
+        $where1 = "tdate >= '$time2' and tdate<= '$etime2'"; //上周
+        $where2 = "tdate >= '$time3' and tdate<= '$etime3'"; //本月
+        $where3 = "tdate >= '$time4' and tdate<= '$etime4'"; //上月
+        $where .=" and".$wheres;
+        $where1 .=" and".$wheres;
+        $where2 .=" and".$wheres;
+        $where3 .=" and".$wheres;
+        $z_list  = Db::name('statistics_qyq')->where($where)->field("sum(xzdata) as xzdata,sum(djdata) as djdata,sum(zjs) as zjs,sum(xjs) as xjs,sum(card_xh) as card_xh,sum(card_sy) as card_sy,tdate")->order('tdate desc')->group('tdate')->select();
+        $sz_list = Db::name('statistics_qyq')->where($where1)->field("sum(xzdata) as xzdata,sum(djdata) as djdata,sum(zjs) as zjs,sum(xjs) as xjs,sum(card_xh) as card_xh,sum(card_sy) as card_sy,tdate")->order('tdate desc')->group('tdate')->select();
+        $m_list  = Db::name('statistics_qyq')->where($where2)->field("sum(xzdata) as xzdata,sum(djdata) as djdata,sum(zjs) as zjs,sum(xjs) as xjs,sum(card_xh) as card_xh,sum(card_sy) as card_sy,tdate")->order('tdate desc')->group('tdate')->select();
+        $sm_list = Db::name('statistics_qyq')->where($where3)->field("sum(xzdata) as xzdata,sum(djdata) as djdata,sum(zjs) as zjs,sum(xjs) as xjs,sum(card_xh) as card_xh,sum(card_sy) as card_sy,tdate")->order('tdate desc')->group('tdate')->select();
+        if(input('post.')){
+           return json(['code'=>1,'z_list'=>$z_list,'sz_list'=>$sz_list,'m_list'=>$m_list,'sm_list'=>$sm_list]);
+       }
+        return $this->fetch();
+    }
     /**
      */
     private function getAush ($gid) {
@@ -285,6 +321,23 @@ class Index extends Controller
             $qz_list   = $user_model->get_qz_list($PayBindid);
             return json(['code'=>1,'data'=>$qz_list]);
         }
+    }
+
+    private function get_qyq_all($uid){
+                        //获取所有业务员
+        $where = " 1 and s_nid = $uid";
+        $list = Db::name('member')->where($where)->select();
+        $str = " (userId=0";
+        if(!empty($list)){
+            $user_model = new UserInfModel();
+            foreach ($list as $key=>$v) {
+                $res = $user_model->get_qz_lists("",$list[$key]['PayBindid']);
+                if($res!='1'){
+                    $str .= $res;
+                }
+            }
+        }
+        return $str.')';
     }
 
 }

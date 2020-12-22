@@ -47,18 +47,31 @@
                 <div class="service_title">个人中心</div>
                 <div>
                     <div class="service_block" v-if="group_id==4" @click ="get_qz_list(PayBindid)" >
-                        <div><img src="__IMG__/icon/menu-icon.png" height="22" width="22"></div>
-                        <div class="service_text">昵称:{{nickname}}</div>
+                        <div><img src="__IMG__/icon/account-1.png" height="22" width="22"></div>
+                        <div class="service_text">
+                            <div style="font-weight: bold"> 昵称:<font color="green">{{nickname}}</font></div>
+                        </div>
                     </div>
                     <div class="service_block" v-for="item in agent" @click ="get_qz_list(item.PayBindid)" >
-                        <div><img src="__IMG__/icon/menu-icon.png" height="22" width="22"></div>
-                        <div class="service_text">业务员昵称:{{item.nickname}}</div>
+                        <div><img src="__IMG__/icon/account-1.png" height="22" width="22"></div>
+                        <div class="service_text">
+                            <div style="font-weight: bold"> 业务员昵称:<font color="green">{{item.nickname}}</font></div>
+                        </div>
                     </div>
-                    <div class="service_block" style="background: #ade0d3"  v-for="item in qz_list"  v-on:click ="qyq_info(item.groupId)">
+                    <div class="service_block" style="background: #ade0d3;width: 100%; display: flex;text-align: center"  v-for="item in qz_list"  v-on:click ="qyq_info(item.groupId)">
                         <div><img src="__IMG__/icon/menu-icon.png" height="22" width="22"></div>
-                        <div class="service_text">群主昵称:{{item.userName}}</div>
-                        <div class="service_text">群主id:{{item.userId}}</div>
-                        <div class="service_text">亲友圈id:{{item.groupId}}</div>
+                        <div style="width: 30%;overflow: hidden">
+                            <div style="font-weight: bold;color:coral"> 群主昵称:</div>
+                            <div style="color: blue">{{item.userName}}</div>
+                        </div>
+                        <div style="width: 30%;overflow: hidden">
+                            <div style="font-weight: bold;color:coral">群主id:</div>
+                            <div style="color: blue">{{item.userId}}</div>
+                        </div>
+                        <div style="width: 30%;overflow: hidden">
+                            <div style="font-weight: bold;color:coral">亲友圈id:</div>
+                            <div style="font-weight: bold;color: blue">{{item.groupId}}</div>
+                        </div>
                     </div>
                 </div>
                 </div>

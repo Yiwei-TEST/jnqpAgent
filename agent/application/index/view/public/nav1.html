@@ -22,7 +22,15 @@
         </div>
         <!--<div class="icon_bar_cell"><a id="orderinfo_a" name="orderinfo_a" href="/index/index/orderinfo"><div class="icon_bar_trade"></div><div class="icon_bar_text">成员列表</div></a></div>-->
         <div class="icon_bar_cell"><a class="active" href="/index/index/index"><div class="icon_bar_index"></div><div class="icon_bar_text">首　页</div></a></div>
-        <!--<div class="icon_bar_cell"><a name="history_a" id="history_a" href="/index/index/history"><div class="icon_bar_history"></div><div class="icon_bar_text">数据统计</div></a></div>-->
+        <div class="icon_bar_cell" v-show="level==2">
+            <a name="history_a" id="history_a" href="/index/index/sum_statistics">
+                <div class="icon_bar_trade">
+                </div>
+                <div class="icon_bar_text">
+                亲友圈数据汇总
+            </div>
+            </a>
+        </div>
         <div class="icon_bar_cell"><a name="my_a" id="my_a" href="/index/index/my"><div class="icon_bar_my"></div><div class="icon_bar_text">我　的</div></a></div>
     </div>
     <div id="Modal_coverchgall" class="cover"></div>

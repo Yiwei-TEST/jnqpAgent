@@ -22,6 +22,20 @@ class UserInfModel
         $db2 = Config::get('db2');
         $sql = "SELECT a.userName,a.userNickname,b.userId,a.groupId FROM t_group_user AS a ,user_inf AS b WHERE a.userId = b.userId AND b.PayBindid = '$PayBindid' AND a.userRole = 1";
         return Db::connect($db2)->query($sql);
+    }
+
+    public function get_qz_lists($str,$PayBindid) {
+        $db2 = Config::get('db2');
+        $sql = "SELECT a.userId FROM t_group_user AS a ,user_inf AS b WHERE a.userId = b.userId AND b.PayBindid = '$PayBindid' AND a.userRole = 1 group by b.userId";
+        $res = Db::connect($db2)->query($sql);
+        if(!empty($res)) {
+           foreach ($res as $key=>$v){
+               $str .=" or userId =".$v['userId'];
+           }
+            return $str;
+        }else{
+            return 1;
+        }
 
     }
 }
