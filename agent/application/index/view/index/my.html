@@ -137,7 +137,13 @@
                 axios
                     .post('/index/index/get_qz_list',{PayBindid:a})
                     .then(function (response) {
-                        _this.qz_list = response.data.data;
+                       if(response.data.code==1){
+                           _this.qz_list = response.data.data;
+                       }else{
+                           alert(response.data.message);
+                           return;
+                       }
+
                     })
                     .catch(function (error) { // 请求失败处理
                         console.log(error);
