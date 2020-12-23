@@ -97,14 +97,17 @@ class Index
                  $r_data['code']= -2;
                  $r_data['message']= "签名错误";
                  $r_datas = json_encode($r_data);
+                 apilog($r_datas);
                  $r_datass = encrypt_info($r_datas);
                  return urlencode($r_datass);
              }
              $userinfo = Db::name('member')->where('payBindId',$data_info['payBindId'])->find();
              if(empty($userinfo)) {
                  $r_data['code']= -3;
+                 $r_data['payBindId']= $data_info['payBindId'];
                  $r_data['message']= "推广码无效";
                  $r_datas = json_encode($r_data);
+                 apilog($r_datas);
                  $r_datass = encrypt_info($r_datas);
                  return urlencode($r_datass);
              }
@@ -118,6 +121,7 @@ class Index
                 $r_data['code']= -4;
                 $r_data['message']= "用户不存在";
                 $r_datas = json_encode($r_data);
+                apilog($r_datas);
                 $r_datass = encrypt_info($r_datas);
                 return urlencode($r_datass);
             }
