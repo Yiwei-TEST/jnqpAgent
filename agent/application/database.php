@@ -2,14 +2,14 @@
 
 return [
     'type'           => 'mysql',	     // 数据库类型
-//    'hostname'       => 'rm-2zej68kp5xv3z90ot7o.mysql.rds.aliyuncs.com',     // 服务器地址
+    'hostname'       => 'rm-2zej68kp5xv3z90ot7o.mysql.rds.aliyuncs.com',     // 服务器地址
+    'database'       => 'cms',    // 数据库名
+    'username'       => 'jnqp_cms',	         // 用户名
+    'password'       => 'jnqp_2020',	         // 密码
+//    'hostname'       => '127.0.0.1',     // 服务器地址
 //    'database'       => 'agent',    // 数据库名
-//    'username'       => 'jnqp_cms',	         // 用户名
-//    'password'       => 'jnqp_2020',	         // 密码
-    'hostname'       => '127.0.0.1',     // 服务器地址
-    'database'       => 'agent',    // 数据库名
-    'username'       => 'root',	         // 用户名
-    'password'       => 'root',	         // 密码
+//    'username'       => 'root',	         // 用户名
+//    'password'       => 'root',	         // 密码
     'hostport'       => '3306',	         // 端口
     'dsn'            => '',	             // 连接dsn
     'params'         => [],	             // 数据库连接参数

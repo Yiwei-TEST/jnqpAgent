@@ -21,6 +21,7 @@ class UserInfModel
     public function get_qz_list($PayBindid) {
         $db2 = Config::get('db2');
         $sql = "SELECT a.userName,a.userNickname,b.userId,a.groupId FROM t_group_user AS a ,user_inf AS b WHERE a.userId = b.userId AND b.PayBindid = '$PayBindid' AND a.userRole = 1";
+
         return Db::connect($db2)->query($sql);
     }
 

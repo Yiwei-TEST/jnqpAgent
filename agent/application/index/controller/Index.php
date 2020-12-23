@@ -319,7 +319,7 @@ class Index extends Controller
             $PayBindid = input('post.PayBindid');
             $user_model = new UserInfModel();
             $qz_list   = $user_model->get_qz_list($PayBindid);
-            if(count($qz_list)>1){
+            if(count($qz_list)>0){
                 return json(['code'=>1,'data'=>$qz_list]);
             }else{
                 return json(['code'=>0,'message'=>"暂无群主信息"]);

@@ -48,7 +48,10 @@
 				color: #0d3675;
 				margin-top: 200px;
 			}
-
+			.table_head{
+				display: flex;
+				position: absolute;
+			}
 		</style>
 		<link rel="stylesheet" href="__CSS__/account_history.css">
 		<link rel="stylesheet" href="__CSS__/public.css">
@@ -70,15 +73,15 @@
 			<input id="tab-4" type="radio" name="radio-set" class="tab-selector-4">
 			<label for="tab-4" class="tab-label-4">上月</label>
 			<div class="clear-shadow"></div>
-			<div style="width: 100%;height: 100px;display:flex;background: linear-gradient(to right, #91764b 0%, #d1b181 50%, #91764b 100%);color: #fff;padding-top: 50px">
-				<div style="width: 25%;">日期</div>
-				<div style="width: 25%;">注册人数玩牌人数</div>
-				<div style="width: 25%;">总局数小局数</div>
-				<div style="width: 25%;">钻石消耗钻石剩余</div>
-			</div>
 			<div style="margin-top:0px;" class="content">
-				<div class="content-1" style="padding: 12px 5px 65px 5px;">
-					<div class="history_table">
+				<div class="content-1">
+					<div class="table_head" style="position: fixed;z-index: 100;width: 100%;height: 50px;left: 0px;">
+						<div class="table_head_cell" style="width: 15%">日期</div>
+						<div class="table_head_cell" style="width: 18%;margin-left: 5%">注册人数玩牌人数</div>
+						<div class="table_head_cell" style="width: 14%;margin-left: 9%">总局数小局数</div>
+						<div class="table_head_cell" style="width: 18%;margin-left: 9%">钻石消耗钻石剩余</div>
+					</div>
+					<div class="history_table" style="margin-top: 50px">
 						<div class="history_row" v-for="item in z_list">
 							<div class="history_cell" style="width: 15%;text-align: center">{{item.tdate}}</div>
 							<div class="history_cell" style="width: 18%;text-align: center">{{item.xzdata}}/{{item.djdata}}</div>
@@ -87,8 +90,14 @@
 						</div>
 					</div>
 				</div>
-				<div class="content-2" style="padding: 12px 5px 65px 5px;">
-					<div class="history_table">
+				<div class="content-2">
+					<div class="table_head" style="position: fixed;z-index: 100;width: 100%;height: 50px;left: 0px;">
+						<div class="table_head_cell" style="width: 15%">日期</div>
+						<div class="table_head_cell" style="width: 18%;margin-left: 5%">注册人数玩牌人数</div>
+						<div class="table_head_cell" style="width: 14%;margin-left: 9%">总局数小局数</div>
+						<div class="table_head_cell" style="width: 18%;margin-left: 9%">钻石消耗钻石剩余</div>
+					</div>
+					<div class="history_table" style="margin-top: 50px">
 						<div class="history_row" v-for="item in sz_list">
 							<div class="history_cell" style="width: 15%;text-align: center">{{item.tdate}}</div>
 							<div class="history_cell" style="width: 18%;text-align: center">{{item.xzdata}}/{{item.djdata}}</div>
@@ -97,8 +106,14 @@
 						</div>
 					</div>
 				</div>
-				<div class="content-3" style="padding: 12px 5px 65px 5px;">
-					<div class="history_table">
+				<div class="content-3">
+					<div class="table_head" style="position: fixed;z-index: 100;width: 100%;height: 50px;left: 0px;">
+						<div class="table_head_cell" style="width: 15%">日期</div>
+						<div class="table_head_cell" style="width: 18%;margin-left: 5%">注册人数玩牌人数</div>
+						<div class="table_head_cell" style="width: 14%;margin-left: 9%">总局数小局数</div>
+						<div class="table_head_cell" style="width: 18%;margin-left: 9%">钻石消耗钻石剩余</div>
+					</div>
+					<div class="history_table" style="margin-top: 50px">
 						<div class="history_row" v-for="item in m_list">
 							<div class="history_cell" style="width: 15%;text-align: center">{{item.tdate}}</div>
 							<div class="history_cell" style="width: 18%;text-align: center">{{item.xzdata}}/{{item.djdata}}</div>
@@ -107,8 +122,14 @@
 						</div>
 					</div>
 				</div>
-				<div class="content-4" style="padding: 12px 5px 65px 5px;">
-					<div class="history_table">
+				<div class="content-4">
+					<div class="table_head" style="position: fixed;z-index: 100;width: 100%;height: 50px;left: 0px;">
+						<div class="table_head_cell" style="width: 15%">日期</div>
+						<div class="table_head_cell" style="width: 18%;margin-left: 5%">注册人数玩牌人数</div>
+						<div class="table_head_cell" style="width: 14%;margin-left: 9%">总局数小局数</div>
+						<div class="table_head_cell" style="width: 18%;margin-left: 9%">钻石消耗钻石剩余</div>
+					</div>
+					<div class="history_table" style="margin-top: 50px">
 						<div class="history_row" v-for="item in sm_list">
 							<div class="history_cell" style="width: 15%;text-align: center">{{item.tdate}}</div>
 							<div class="history_cell" style="width: 18%;text-align: center">{{item.xzdata}}/{{item.djdata}}</div>
