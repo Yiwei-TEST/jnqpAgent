@@ -79,7 +79,7 @@ class Index
                  $r_datass = encrypt_info($r_datas);
                  return urlencode($r_datass);
              }
-             $data      =  file_get_contents("php://input");
+             $data    = input('post.data') ? input('post.data') : file_get_contents("php://input");
              apilog($data);
              if(empty($data)){
                  $r_data['code']= -1;
