@@ -54,7 +54,7 @@ function encrypt_info($info) {
 function checkSign($params_info) {
     ksort($params_info);
     $params_infoss = http_build_query($params_info);
-    return md5("&".$params_infoss."&key=0NUs3u0qpsfrB4k9");
+    return md5("&".$params_infoss."&key=qZzWngop3t8OswG0");
 }
 /**
  * 签名参数
